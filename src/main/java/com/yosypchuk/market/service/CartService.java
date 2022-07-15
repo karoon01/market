@@ -1,8 +1,8 @@
 package com.yosypchuk.market.service;
 
-import com.yosypchuk.market.entity.Cart;
-import com.yosypchuk.market.entity.Product;
-import com.yosypchuk.market.entity.User;
+import com.yosypchuk.market.model.entity.Cart;
+import com.yosypchuk.market.model.entity.Product;
+import com.yosypchuk.market.model.entity.User;
 
 import java.util.List;
 

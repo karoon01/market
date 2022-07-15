@@ -1,8 +1,7 @@
 package com.yosypchuk.market.repository;
 
-import com.yosypchuk.market.entity.ProductRate;
+import com.yosypchuk.market.model.entity.ProductRate;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

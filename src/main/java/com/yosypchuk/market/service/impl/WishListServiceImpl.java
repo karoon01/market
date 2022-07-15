@@ -1,7 +1,7 @@
 package com.yosypchuk.market.service.impl;
 
-import com.yosypchuk.market.entity.Product;
-import com.yosypchuk.market.entity.WishList;
+import com.yosypchuk.market.model.entity.Product;
+import com.yosypchuk.market.model.entity.WishList;
 import com.yosypchuk.market.repository.WishListRepository;
 import com.yosypchuk.market.service.WishListService;
 import org.springframework.stereotype.Service;

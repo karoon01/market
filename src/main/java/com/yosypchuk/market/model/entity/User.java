@@ -1,10 +1,12 @@
-package com.yosypchuk.market.entity;
+package com.yosypchuk.market.model.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User{
@@ -15,11 +17,14 @@ public class User{
 
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
     private String password;
+
+    @Column(unique = true)
     private String phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @Enumerated(value = EnumType.STRING)
     Role role;
 }

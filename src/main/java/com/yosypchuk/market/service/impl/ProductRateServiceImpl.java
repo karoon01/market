@@ -1,6 +1,6 @@
 package com.yosypchuk.market.service.impl;
 
-import com.yosypchuk.market.entity.ProductRate;
+import com.yosypchuk.market.model.entity.ProductRate;
 import com.yosypchuk.market.repository.ProductRateRepository;
 import com.yosypchuk.market.service.ProductRateService;
 import org.springframework.stereotype.Service;

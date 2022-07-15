@@ -1,7 +1,7 @@
 package com.yosypchuk.market.controller;
 
-import com.yosypchuk.market.entity.Product;
-import com.yosypchuk.market.entity.ProductRate;
+import com.yosypchuk.market.model.entity.Product;
+import com.yosypchuk.market.model.entity.ProductRate;
 import com.yosypchuk.market.service.ProductRateService;
 import com.yosypchuk.market.service.ProductService;
 import org.springframework.http.HttpStatus;

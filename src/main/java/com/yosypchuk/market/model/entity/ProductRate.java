@@ -1,26 +1,29 @@
-package com.yosypchuk.market.entity;
+package com.yosypchuk.market.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor @NoArgsConstructor
 @Entity
-@Table(name="cart")
-public class Cart {
+@Table(name = "product_rate")
+public class ProductRate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private double rate;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Transient
+    private Integer amount;
 }

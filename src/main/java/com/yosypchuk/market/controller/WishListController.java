@@ -1,6 +1,6 @@
 package com.yosypchuk.market.controller;
 
-import com.yosypchuk.market.entity.Product;
+import com.yosypchuk.market.model.entity.Product;
 import com.yosypchuk.market.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

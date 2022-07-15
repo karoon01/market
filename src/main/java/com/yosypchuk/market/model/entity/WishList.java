@@ -1,4 +1,4 @@
-package com.yosypchuk.market.entity;
+package com.yosypchuk.market.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,16 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @Entity
-public class Role {
+@Table(name = "wish_list")
+public class WishList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @NotNull
-    String name;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    User user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
 }

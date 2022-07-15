@@ -1,4 +1,4 @@
-package com.yosypchuk.market.entity;
+package com.yosypchuk.market.model.entity;
 
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="product_category")
 public class ProductCategory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

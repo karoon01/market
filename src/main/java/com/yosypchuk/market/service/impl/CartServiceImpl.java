@@ -1,11 +1,10 @@
 package com.yosypchuk.market.service.impl;
 
-import com.yosypchuk.market.entity.Cart;
-import com.yosypchuk.market.entity.Product;
-import com.yosypchuk.market.entity.User;
-import com.yosypchuk.market.exception.UserNotFoundException;
+import com.yosypchuk.market.model.entity.Cart;
+import com.yosypchuk.market.model.entity.Product;
+import com.yosypchuk.market.model.entity.User;
+import com.yosypchuk.market.exception.EntityNotFoundException;
 import com.yosypchuk.market.repository.CartRepository;
-import com.yosypchuk.market.repository.WishListRepository;
 import com.yosypchuk.market.service.CartService;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class CartServiceImpl implements CartService {
                 .stream()
                 .filter(e -> e.getUser().getId() == userId)
                 .findAny()
-                .orElseThrow(() -> new UserNotFoundException("Cannot get user with id: " + userId));
+                .orElseThrow(() -> new EntityNotFoundException("Cannot get user with id: " + userId));
     }
 
     @Override

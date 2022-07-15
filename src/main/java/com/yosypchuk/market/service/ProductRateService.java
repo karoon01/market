@@ -1,6 +1,6 @@
 package com.yosypchuk.market.service;
 
-import com.yosypchuk.market.entity.ProductRate;
+import com.yosypchuk.market.model.entity.ProductRate;
 
 import java.util.List;
 

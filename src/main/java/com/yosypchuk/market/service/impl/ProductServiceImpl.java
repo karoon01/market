@@ -1,15 +1,13 @@
 package com.yosypchuk.market.service.impl;
 
-import com.yosypchuk.market.entity.Product;
+import com.yosypchuk.market.model.entity.Product;
 import com.yosypchuk.market.exception.ProductNotFoundException;
-import com.yosypchuk.market.exception.UserNotFoundException;
 import com.yosypchuk.market.repository.ProductRepository;
 import com.yosypchuk.market.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j

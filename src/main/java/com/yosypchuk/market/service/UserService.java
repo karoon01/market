@@ -1,20 +1,21 @@
 package com.yosypchuk.market.service;
 
-import com.yosypchuk.market.entity.User;
+import com.yosypchuk.market.model.dto.UserDTO;
+import com.yosypchuk.market.model.entity.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
+    UserDTO registerUser(UserDTO userDTO);
 
-    User getUserById(Long id);
+    UserDTO getUserByEmail(String email);
 
-    User getUserByEmail(String email);
+    UserDTO getUserById(Long id);
 
-    void save(User user);
+    List<UserDTO> getAllUsers();
 
-    void delete(User user);
+    void delete(Long id);
 
-    List<User> getAll();
+    UserDTO update(Long id, UserDTO userDTO);
 
 }

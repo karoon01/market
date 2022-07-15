@@ -1,4 +1,4 @@
-package com.yosypchuk.market.entity;
+package com.yosypchuk.market.model.entity;
 
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
