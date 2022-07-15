@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api("User management API")
@@ -18,7 +19,6 @@ import java.util.List;
         @ApiResponse(code = 500, message = "Internal Server Error")
 })
 public interface UserApi {
-
     @ApiOperation("Get user by id")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
@@ -28,6 +28,11 @@ public interface UserApi {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
     List<UserDTO> getAllUsers();
+
+    @ApiOperation("Update user")
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    UserDTO updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO);
 
     @ApiOperation("Delete user by id")
     @ResponseStatus(HttpStatus.OK)

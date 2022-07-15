@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -23,6 +24,11 @@ public class UserController implements UserApi {
     @Override
     public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @Override
+    public UserDTO updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
+        return userService.update(id, userDTO);
     }
 
     @Override

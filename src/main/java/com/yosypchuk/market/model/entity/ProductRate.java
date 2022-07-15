@@ -9,12 +9,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "product_rate")
 public class ProductRate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double rate;
+    private Double rate;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -23,7 +22,4 @@ public class ProductRate {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @Transient
-    private Integer amount;
 }
