@@ -4,11 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name="product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

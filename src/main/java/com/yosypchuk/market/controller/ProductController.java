@@ -1,72 +1,44 @@
 package com.yosypchuk.market.controller;
 
-import com.yosypchuk.market.model.entity.Product;
-import com.yosypchuk.market.model.entity.ProductRate;
-import com.yosypchuk.market.service.ProductRateService;
+import com.yosypchuk.market.api.ProductApi;
+import com.yosypchuk.market.model.dto.ProductDTO;
 import com.yosypchuk.market.service.ProductService;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
-public class ProductController {
+public class ProductController implements ProductApi {
 
     private ProductService productService;
-    private ProductRateService productRateService;
 
-    public ProductController(ProductService productService, ProductRateService productRateService) {
-        this.productService = productService;
-        this.productRateService = productRateService;
+    @Override
+    public List<ProductDTO> getAllProducts(){
+        return productService.getAll();
     }
 
-    @GetMapping("/products/all")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product> products = productService.getAll();
-
-        if(products.size() == 0){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(new ArrayList<>(productService.getAll()), HttpStatus.OK);
+    @Override
+    public ProductDTO getProduct(@PathVariable Long id){
+        return productService.getProductById(id);
     }
 
-    @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id){
-        if(id == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        Product product = productService.getProductById(id);
-        if(product == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(product, HttpStatus.OK);
+    @Override
+    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
+        return productService.save(productDTO);
     }
 
-    @GetMapping("/product/{id}/rate")
-    public ResponseEntity<List<ProductRate>> getProductsRate(@PathVariable("id") Long id){
-        if(id == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        List<ProductRate> rates = productRateService.getAllProductsRate(id);
-        if(rates == null || rates.size() == 0){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(rates, HttpStatus.OK);
+    @Override
+    public ProductDTO updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDTO productDTO) {
+        return productService.update(id, productDTO);
     }
 
-    @DeleteMapping("/product/delete/{id}")
-    public ResponseEntity<Long> deleteProduct(@PathVariable("id") Long id){
-        if(id == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @Override
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
         productService.removeProduct(id);
-
-        return new ResponseEntity<>(id, HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 }
