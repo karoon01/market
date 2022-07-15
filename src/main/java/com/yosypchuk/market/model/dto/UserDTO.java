@@ -15,19 +15,19 @@ public class UserDTO {
     private Long id;
     private Role role;
 
-    @NotBlank
+    @NotBlank(message = "${user.first.name.not-blank}")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "${user.last.name.not-blank}")
     private String lastName;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "${user.email.not-blank}")
+    @Email(message = "${user.email.not-valid}")
     private String email;
 
-    @NotBlank
-    @Size(min = 6)
+    @NotBlank(message = "${user.password.not-blank}")
+    @Size(min = 6, message = "${user.password.length}")
     private String password;
 
-    @PhoneNumber
+    @PhoneNumber(message = "${user.phone.not-valid}")
     private String phoneNumber;
 }

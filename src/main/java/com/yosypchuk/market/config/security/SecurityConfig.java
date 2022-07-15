@@ -1,11 +1,10 @@
-package com.yosypchuk.market.config;
+package com.yosypchuk.market.config.security;
 
-import com.yosypchuk.market.config.jwt.AuthTokenFilter;
+import com.yosypchuk.market.config.security.jwt.AuthTokenFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

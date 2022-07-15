@@ -1,4 +1,4 @@
-package com.yosypchuk.market.config.jwt;
+package com.yosypchuk.market.config.security.jwt;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 

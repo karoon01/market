@@ -1,4 +1,4 @@
-package com.yosypchuk.market.config;
+package com.yosypchuk.market.config.security;
 
 import com.yosypchuk.market.model.entity.User;
 import org.springframework.security.core.GrantedAuthority;

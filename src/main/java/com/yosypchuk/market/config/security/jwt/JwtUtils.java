@@ -1,4 +1,4 @@
-package com.yosypchuk.market.config.jwt;
+package com.yosypchuk.market.config.security.jwt;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;

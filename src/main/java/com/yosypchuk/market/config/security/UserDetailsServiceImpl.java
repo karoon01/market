@@ -1,5 +1,6 @@
-package com.yosypchuk.market.config;
+package com.yosypchuk.market.config.security;
 
+import com.yosypchuk.market.config.security.UserDetailsImpl;
 import com.yosypchuk.market.exception.EntityNotFoundException;
 import com.yosypchuk.market.model.entity.User;
 import com.yosypchuk.market.repository.UserRepository;
