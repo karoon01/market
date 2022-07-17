@@ -1,50 +1,55 @@
 package com.yosypchuk.market.service.impl;
 
+import com.yosypchuk.market.exception.EntityNotFoundException;
 import com.yosypchuk.market.model.entity.Cart;
 import com.yosypchuk.market.model.entity.Product;
-import com.yosypchuk.market.model.entity.User;
-import com.yosypchuk.market.exception.EntityNotFoundException;
 import com.yosypchuk.market.repository.CartRepository;
 import com.yosypchuk.market.service.CartService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
+@AllArgsConstructor
 @Service
 public class CartServiceImpl implements CartService {
+    private final CartRepository cartRepository;
 
-    private CartRepository cartRepository;
-
-    public CartServiceImpl(CartRepository cartRepository) {
-        this.cartRepository = cartRepository;
+    @Override
+    public Cart save(Cart cart) {
+        log.info("Save cart");
+        return cartRepository.save(cart);
     }
 
     @Override
     public Cart getCartByUserId(Long userId) {
-        return cartRepository.findAll()
-                .stream()
-                .filter(e -> e.getUser().getId() == userId)
-                .findAny()
-                .orElseThrow(() -> new EntityNotFoundException("Cannot get user with id: " + userId));
+        log.info("Get cart by user id: {}", userId);
+        Cart cart = cartRepository.findCartByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Invalid user id!"));
+        return cart;
     }
 
     @Override
-    public List<Product> showCartItems(Long userId) {
-        return cartRepository.findAll()
-                .stream()
-                .filter(e -> e.getUser().getId() == userId)
-                .map(e -> e.getProduct())
-                .collect(Collectors.toList());
+    public List<Product> getCartItems(Long userId) {
+        log.info("Get cart products by user id: {}", userId);
+        return cartRepository.getAllProductsFromCartByUserId(userId);
     }
 
     @Override
-    public void addProductToCart(Product product, User user) {
-        cartRepository.addProductToUserCart(user.getId(), product.getId());
+    public Cart addProductToCart(Long productId, Long userId) {
+//        cartRepository.addProductToCart(userId, productId);
+        Cart cart = cartRepository.findCartByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Invalid user id!"));
+        return cart;
     }
 
     @Override
-    public void removeProductFromList(Product product, User user) {
-
+    public Cart removeProductFromCart(Long productId, Long userId) {
+//        cartRepository.removeProductFromCart(userId, productId);
+        Cart cart = cartRepository.findCartByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Invalid user id!"));
+        return cart;
     }
 }

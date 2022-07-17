@@ -22,8 +22,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     private AuthTokenFilter jwtTokenFilter;
 
-    private static final String[] USER_PATHS = {};
-    private static final String[] ADMIN_PATHS = {};
+    private static final String[] USER_PATHS = {
+            "/api/v1/user/{id}",
+            "/api/v1/product/all",
+            "/api/v1/product/{id}"
+
+    };
+    private static final String[] ADMIN_PATHS = {
+            "/api/v1/user/all",
+            "/api/v1/product",
+            "/api/v1/product/update/{id}",
+            "/api/v1/product/delete/{id}"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,14 +50,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().and().cors().disable();
+        http.cors().and().csrf().disable();
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("apu").permitAll()
                 .antMatchers("/v3/api-docs", "/swagger-ui.html", "/swagger-ui/api-docs/swagger-config", "/swagger-ui/**").permitAll()
+                .antMatchers("/api/v1/auth/**").permitAll()
                 .antMatchers(USER_PATHS).hasAuthority("USER")
                 .antMatchers(ADMIN_PATHS).hasAuthority("ADMIN")
                 .anyRequest().authenticated();

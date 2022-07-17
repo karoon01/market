@@ -1,31 +1,37 @@
 package com.yosypchuk.market.controller;
 
+import com.yosypchuk.market.api.CartApi;
 import com.yosypchuk.market.model.entity.Cart;
+import com.yosypchuk.market.model.entity.Product;
 import com.yosypchuk.market.service.CartService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+@AllArgsConstructor
 @RestController
-public class CartController {
+public class CartController implements CartApi {
 
-    private CartService cartService;
+    private final CartService cartService;
 
-
-    public CartController(CartService cartService) {
-        this.cartService = cartService;
+    @Override
+    public Cart getUserCart(Long id) {
+        return cartService.getCartByUserId(id);
     }
 
-    @GetMapping("/cart/{id}")
-    public ResponseEntity<Cart> getCartByUserId(@PathVariable("id") Long id){
+//    @Override
+//    public List<Product> getUserCartProducts(Long id) {
+//        return cartService.getCartItems(id);
+//    }
 
-        if(id == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @Override
+    public Cart addProductToCart(Long userId, Long productId) {
+        return cartService.addProductToCart(productId, userId);
+    }
 
-        Cart cart = cartService.getCartByUserId(id);
-        return new ResponseEntity<>(cart, HttpStatus.OK);
+    @Override
+    public Cart removeProductFromCart(Long userId, Long productId) {
+        return cartService.removeProductFromCart(productId, userId);
     }
 }

@@ -28,6 +28,6 @@ public class UserDTO {
     @Size(min = 6, message = "${user.password.length}")
     private String password;
 
-    @PhoneNumber(message = "${user.phone.not-valid}")
+//    @PhoneNumber(message = "${user.phone.not-valid}")
     private String phoneNumber;
 }

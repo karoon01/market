@@ -26,7 +26,7 @@ public interface AuthApi {
 
     @ApiOperation("Sign in user")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/register")
+    @PostMapping("/login")
     ResponseEntity<UserDTO> login(@RequestBody @Valid AuthRequestDTO request);
 
 }

@@ -36,11 +36,11 @@ public interface ProductApi {
 
     @ApiOperation("Update product")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     ProductDTO updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDTO productDTO);
 
     @ApiOperation("Delete product")
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     ResponseEntity<Void> deleteProduct(@PathVariable Long id);
 }
