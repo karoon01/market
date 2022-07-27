@@ -3,7 +3,6 @@ package com.yosypchuk.market.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Builder
@@ -15,9 +14,9 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "product_id")
-    private List<Product> product;
+    private Product product;
 
     @OneToOne
     @JoinColumn(name = "user_id")

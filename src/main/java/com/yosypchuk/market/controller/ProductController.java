@@ -28,12 +28,12 @@ public class ProductController implements ProductApi {
 
     @Override
     public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
-        return productService.save(productDTO);
+        return productService.createProduct(productDTO);
     }
 
     @Override
     public ProductDTO updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDTO productDTO) {
-        return productService.update(id, productDTO);
+        return productService.updateProduct(id, productDTO);
     }
 
     @Override

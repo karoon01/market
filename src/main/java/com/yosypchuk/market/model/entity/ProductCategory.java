@@ -3,14 +3,13 @@ package com.yosypchuk.market.model.entity;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name="product_category")
 public class ProductCategory {
@@ -20,8 +19,4 @@ public class ProductCategory {
 
     @NotNull
     private String name;
-
-    @Transient
-    @JsonIgnore
-    private Integer amountOfProducts;
 }

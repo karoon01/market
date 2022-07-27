@@ -17,7 +17,10 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     @Query("SELECT c.product FROM Cart c WHERE c.user.id=?1")
     List<Product> getAllProductsFromCartByUserId(Long userId);
 
-//    void addProductToCart(Long userId, Long productId);
-//
-//    void removeProductFromCart(Long userId, Long productId);
+    @Query(value = "INSERT INTO Cart (userId, productId) VALUES (?, ?)",
+            nativeQuery = true)
+    void addProductToCart(Long userId, Long productId);
+
+    @Query("DELETE FROM Cart c WHERE c.user.id = ?1 AND c.product.id = ?2")
+    void removeProductFromCart(Long userId, Long productId);
 }

@@ -29,8 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     };
     private static final String[] ADMIN_PATHS = {
+            "/api/v1/user/{id}",
             "/api/v1/user/all",
             "/api/v1/product",
+            "/api/v1/product/all",
+            "/api/v1/product/{id}",
             "/api/v1/product/update/{id}",
             "/api/v1/product/delete/{id}"
     };

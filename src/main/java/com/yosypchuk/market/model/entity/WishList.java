@@ -1,17 +1,16 @@
 package com.yosypchuk.market.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "wish_list")
 public class WishList {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

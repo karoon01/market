@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class CartServiceImpl implements CartService {
+
     private final CartRepository cartRepository;
 
     @Override
@@ -39,7 +40,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addProductToCart(Long productId, Long userId) {
-//        cartRepository.addProductToCart(userId, productId);
+        cartRepository.addProductToCart(userId, productId);
         Cart cart = cartRepository.findCartByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException("Invalid user id!"));
         return cart;
@@ -47,7 +48,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart removeProductFromCart(Long productId, Long userId) {
-//        cartRepository.removeProductFromCart(userId, productId);
+        cartRepository.removeProductFromCart(userId, productId);
         Cart cart = cartRepository.findCartByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException("Invalid user id!"));
         return cart;

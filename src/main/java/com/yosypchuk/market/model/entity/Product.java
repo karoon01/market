@@ -16,11 +16,12 @@ public class Product {
 
     private String name;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_category_id")
     private ProductCategory category;
 
     private String description;
+    private Double averageRate;
     private Double price;
     private Integer amount;
 }

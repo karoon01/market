@@ -1,40 +1,30 @@
 package com.yosypchuk.market.controller;
 
-import com.yosypchuk.market.model.entity.Product;
+import com.yosypchuk.market.api.WishListApi;
+import com.yosypchuk.market.model.dto.ProductDTO;
 import com.yosypchuk.market.service.WishListService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
-public class WishListController {
+public class WishListController implements WishListApi {
 
     private WishListService wishListService;
 
-    @Autowired
-    public WishListController(WishListService wishListService) {
-        this.wishListService = wishListService;
+    @Override
+    public List<ProductDTO> getAllProductsFromWishlist(@PathVariable Long userId) {
+        return wishListService.getAllUserProductsFromWishList(userId);
     }
 
-    @GetMapping("/wishlist/{id}")
-    public ResponseEntity<List<Product>> getWishListByUserId(@PathVariable("id") Long id){
+    @Override
+    public ResponseEntity<Void> addProductToWishlist(@PathVariable Long userId, @PathVariable Long productId) {
+        wishListService.addProductToWishList(userId, productId);
+        return ResponseEntity.noContent().build();
 
-        if(id == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        List<Product> products = wishListService.getAllUserProductsFromWishList(id);
-
-        if(products.size() == 0){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(products, HttpStatus.OK);
     }
-
 }

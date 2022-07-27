@@ -6,12 +6,15 @@ import com.yosypchuk.market.model.entity.Product;
 import java.util.List;
 
 public interface ProductService {
+    ProductDTO createProduct(ProductDTO productDTO);
 
     ProductDTO getProductById(Long id);
 
-    ProductDTO save(ProductDTO productDTO);
+    ProductDTO getProductByName(String name);
 
-    ProductDTO update(Long id, ProductDTO productDTO);
+    ProductDTO updateProduct(Long id, ProductDTO productDTO);
+
+    ProductDTO updateProductAmount(Long id, Integer amount);
 
     void removeProduct(Long id);
 
