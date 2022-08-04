@@ -1,6 +1,7 @@
 package com.yosypchuk.market.model.dto;
 
 import com.yosypchuk.market.model.entity.Cart;
+import com.yosypchuk.market.model.entity.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,6 +15,8 @@ public class OrderDTO {
 
     @NotBlank(message = "${order.cart.not-blank}")
     private Cart cart;
+
+    private OrderStatus status;
 
     @NotBlank(message = "${order.city.not-blank}")
     private String city;

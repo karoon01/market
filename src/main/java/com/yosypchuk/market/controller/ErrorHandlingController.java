@@ -27,7 +27,7 @@ public class ErrorHandlingController {
     @ExceptionHandler(value = EntityAlreadyExistException.class)
     public ResponseEntity<ApiError> handleEntityAlreadyExistException(EntityAlreadyExistException e) {
         log.info("handleEntityNotFoundException: {}", e.getMessage(), e);
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, e.getMessage(), e));
+        return buildResponseEntity(new ApiError(HttpStatus.CONFLICT, e.getMessage(), e));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -27,4 +27,10 @@ public class WishListController implements WishListApi {
         return ResponseEntity.noContent().build();
 
     }
+
+    @Override
+    public ResponseEntity<Void> removeProductFromWishList(@PathVariable Long userId, @PathVariable Long productId) {
+        wishListService.removeProductFromWishList(userId, productId);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -22,6 +22,10 @@ public interface CartApi {
     @ApiOperation("Get user cart")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     Cart getUserCart(@PathVariable Long id);
 
 //    @ApiOperation("Get user cart products")
@@ -32,10 +36,18 @@ public interface CartApi {
     @ApiOperation("Add product to user cart")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{userId}/{productId}")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 409, message = "Conflict")
+    })
     Cart addProductToCart(@PathVariable Long userId, @PathVariable Long productId);
 
     @ApiOperation("Remove product to user cart")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{userId}/{productId}")
+    @ApiResponses({
+            @ApiResponse(code = 202, message = "Accepted"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     Cart removeProductFromCart(@PathVariable Long userId, @PathVariable Long productId);
 }

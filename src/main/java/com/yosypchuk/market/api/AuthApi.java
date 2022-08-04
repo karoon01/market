@@ -22,11 +22,16 @@ public interface AuthApi {
     @ApiOperation("Register user")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 409, message = "Conflict")
+    })
     UserDTO register(@RequestBody @Valid UserDTO userDTO);
 
     @ApiOperation("Sign in user")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/login")
+    @ApiResponse(code = 200, message = "OK")
     ResponseEntity<UserDTO> login(@RequestBody @Valid AuthRequestDTO request);
 
 }

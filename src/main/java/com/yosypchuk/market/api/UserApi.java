@@ -22,20 +22,33 @@ public interface UserApi {
     @ApiOperation("Get user by id")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     UserDTO getUserById(@PathVariable Long id);
 
     @ApiOperation("Get all users")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
+    @ApiResponse(code = 200, message = "OK")
     List<UserDTO> getAllUsers();
 
     @ApiOperation("Update user")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     UserDTO updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO);
 
     @ApiOperation("Delete user by id")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
+    @ApiResponses({
+            @ApiResponse(code = 202, message = "Accepted"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     ResponseEntity<Void> deleteUser(@PathVariable Long id);
 }

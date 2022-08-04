@@ -21,10 +21,27 @@ public interface WishListApi {
     @ApiOperation("Get all products from wishlist")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{userId}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     List<ProductDTO> getAllProductsFromWishlist(@PathVariable Long userId);
 
     @ApiOperation("Add product to wishlist")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{userId}/{productId}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
     ResponseEntity<Void> addProductToWishlist(@PathVariable Long userId, @PathVariable Long productId);
+
+    @ApiOperation("Remove product from wishlist")
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{userId}/{productId}")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
+    ResponseEntity<Void> removeProductFromWishList(@PathVariable Long userId, @PathVariable Long productId);
 }

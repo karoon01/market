@@ -25,5 +25,8 @@ public class User{
     private String phoneNumber;
 
     @Enumerated(value = EnumType.STRING)
-    Role role;
+    private Role role;
+
+    private boolean isBlocked;
+    private boolean is2FA;
 }

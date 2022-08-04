@@ -22,4 +22,9 @@ public interface WishListRepository extends JpaRepository<WishList, Long> {
     @Transactional
     void addProductToWishList(@Param("userId") Long userId,
                               @Param("productId") Long productId);
+
+    @Modifying
+    @Query("DELETE FROM WishList w WHERE w.user.id=?1 AND w.product.id=?2")
+    @Transactional
+    void deleteProductFromWishList(Long userId, Long productId);
 }

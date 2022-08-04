@@ -10,5 +10,7 @@ public interface WishListService {
 
     void addProductToWishList(Long userId, Long productId);
 
+    void removeProductFromWishList(Long userId, Long productId);
+
     List<ProductDTO> getAllUserProductsFromWishList(Long userId);
 }

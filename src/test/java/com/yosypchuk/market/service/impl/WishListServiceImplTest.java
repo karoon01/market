@@ -70,6 +70,41 @@ public class WishListServiceImplTest {
     }
 
     @Test
+    void testRemoveProductFromWishList() {
+        //given
+        WishList wishList = TestWishListDataUtil.createWishList();
+
+        when(userRepository.findById(MOCK_USER.getId())).thenReturn(Optional.of(MOCK_USER));
+        when(productRepository.findById(MOCK_PRODUCT.getId())).thenReturn(Optional.of(MOCK_PRODUCT));
+        doNothing().when(wishListRepository).deleteProductFromWishList(MOCK_USER.getId(), MOCK_PRODUCT.getId());
+
+        //when
+        wishListService.removeProductFromWishList(MOCK_USER.getId(), MOCK_PRODUCT.getId());
+
+        //then
+        verify(wishListRepository, times(1)).deleteProductFromWishList(MOCK_USER.getId(), MOCK_PRODUCT.getId());
+    }
+
+    @Test
+    void testRemoveProductFromWishListThrowsExceptionIfUserDoesntExist() {
+        //when
+        when(userRepository.findById(MOCK_USER.getId())).thenReturn(Optional.empty());
+
+        //then
+        assertThrows(EntityNotFoundException.class, () -> wishListService.removeProductFromWishList(MOCK_USER.getId(), MOCK_PRODUCT.getId()));
+    }
+
+    @Test
+    void testRemoveProductFromWishListThrowsExceptionIfProductDoesntExist() {
+        //when
+        when(userRepository.findById(MOCK_USER.getId())).thenReturn(Optional.of(MOCK_USER));
+        when(productRepository.findById(MOCK_PRODUCT.getId())).thenReturn(Optional.empty());
+
+        //then
+        assertThrows(EntityNotFoundException.class, () -> wishListService.removeProductFromWishList(MOCK_USER.getId(), MOCK_PRODUCT.getId()));
+    }
+
+    @Test
     void testGetAllUserProductsFromWishList() {
         //given
         List<Product> productList = List.of(MOCK_PRODUCT, MOCK_PRODUCT_SECOND);

@@ -18,6 +18,8 @@ public class Order {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
+    private OrderStatus status;
+
     private String city;
     private String postNumber;
     private Double totalPrice;

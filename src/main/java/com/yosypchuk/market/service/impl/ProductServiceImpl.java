@@ -37,9 +37,11 @@ public class ProductServiceImpl implements ProductService {
         log.info("Get product by name: {}", name);
         Product product = productRepository.findProductByName(name)
                 .orElseThrow(() -> new EntityNotFoundException("Product is not found!"));
+
         return ProductMapper.INSTANCE.mapProductDto(product);
     }
 
+    @Transactional
     @Override
     public ProductDTO createProduct(ProductDTO productDTO) {
         String name = productDTO.getName();
@@ -84,6 +86,7 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.INSTANCE.mapProductDto(updatedProduct);
     }
 
+    @Transactional
     @Override
     public ProductDTO updateProductAmount(Long id, Integer amount) {
         log.info("Trying to get product with id: {}", id);
@@ -97,11 +100,14 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.INSTANCE.mapProductDto(product);
     }
 
+    @Transactional
     @Override
     public void removeProduct(Long id) {
-        log.info("Delete product with id: {}", id);
+        log.info("Get product by id: {}", id);
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product is not found"));
+
+        log.info("Delete product with id: {}", id);
         productRepository.delete(product);
     }
 
